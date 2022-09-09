@@ -61,28 +61,8 @@ function Statistics() {
   };
   const [activeTab, setActiveTab] = useState(1);
   return (
-    <div className=" justify-between w-full flex flex-row justify-between">
-      <div className=" bg-cardBackground rounded-lg  ">
-        <div className=" bg-cardBackground  content-start  px-3 py-3 rounded-lg ">
-          <h1 className="text-silver text-center font-bold mb-4">Savings</h1>
-          <div className="mb-4">
-            <Line data={data} />
-          </div>
-        </div>
-      </div>
-      <div>
-        <div className="">
-          <div className=" bg-cardBackground content-start  px-3 py-3 rounded-lg ">
-            <h1 className="text-silver text-center font-bold mb-4">
-              Invesments
-            </h1>
-            <div className="mb-4">
-              <Line data={Investdata} className="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="">
+    <div className=" justify-between w-full flex flex-row ">
+      <div className="w-1/2">
         <div className=" bg-cardBackground content-start  px-3 py-3 rounded-lg ">
           <h1 className="text-silver text-center font-bold mb-4">
             Current Balance
@@ -90,6 +70,13 @@ function Statistics() {
           <div className="mb-4">
             <Line data={Investdata} className="" />
           </div>
+        </div>
+      </div>
+      <div className="bg-cardBackground w-1/4 ">
+        <h1 className="text-center font-bold">Expenses</h1>
+        <div className="flex justify-between mt-2 ">
+          <h4 className=" ml-4 font-bold">Housing</h4>
+          <h5 className=" mr-2">R100000</h5>
         </div>
       </div>
     </div>
