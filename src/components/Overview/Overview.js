@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getDocs, collection, where } from "firebase/firestore";
+import { query } from "firebase/firestore";
+import { db } from "../../hooks/firebase.config";
 
 import Statistics from "./statistic";
 
 function Content() {
+  const [saving, setSaving] = useState([]);
+  const [currentbal, setCurrentbal] = useState([]);
+  // const [investments,setInvestments = useState([]);
+
+  useEffect(() => {
+    getSaving();
+  }, []);
+
+  const getSaving = () => {
+    const savingCollectionRef = collection(db, "balance");
+    getDocs(savingCollectionRef)
+      .then((response) => {
+        const savingdata = response.docs.map((doc) => ({
+          Saving: doc.data(),
+        }));
+        setSaving(savingdata[0].Saving.Saving);
+        console.log(saving.length);
+        setCurrentbal(saving[saving.length - 1]);
+        console.log(currentbal);
+      })
+      .catch((Error) => console.log(Error.message));
+  };
   return (
     <div className=" w-full h-[90vh] space-x-4 items-center justify-center ">
       {/* left section */}
@@ -58,7 +83,7 @@ function Content() {
                   Current Balance
                 </h1>
                 <div className="flex w-full items-center justify-between space-x-4">
-                  <h1 className="font-bold text-silver">R30 000</h1>
+                  <h1 className="font-bold text-silver">{currentbal}</h1>
                 </div>
               </div>
               <div className="px-4"></div>

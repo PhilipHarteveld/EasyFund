@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase.config";
+import { db } from "../hooks/firebase.config";
 import { toast } from "react-toastify";
 
 function OAuth() {
