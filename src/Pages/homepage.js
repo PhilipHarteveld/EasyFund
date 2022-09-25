@@ -5,7 +5,7 @@ import Content from "../components/Overview/Overview";
 
 function Homepage() {
   return (
-    <div className=" bg-background w-screen w-full">
+    <div className=" bg-background w-screen ">
       <Navbar />
       <div className="flex items-start space-x-2 justify-start w-full">
         <SideNav className="mr-10" />

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Data } from "../data";
 import { Progress } from "@chakra-ui/react";
 
 import { Line } from "react-chartjs-2";
-
+import { SavingDataContext } from "./Overview";
 import { CategoryScale } from "chart.js";
 import { Chart, registerables } from "chart.js";
 import { getDocs, collection, where } from "firebase/firestore";
@@ -12,25 +12,8 @@ import { db } from "../../hooks/firebase.config";
 Chart.register(...registerables);
 
 function Statistics() {
-  const [saving, setSaving] = useState([]);
-  const [currentbal, setCurrentbal] = useState([]);
-  // const [investments,setInvestments = useState([]);
-
-  useEffect(() => {
-    getSaving();
-  }, []);
-
-  const getSaving = () => {
-    const savingCollectionRef = collection(db, "balance");
-    getDocs(savingCollectionRef)
-      .then((response) => {
-        const savingdata = response.docs.map((doc) => ({
-          Saving: doc.data(),
-        }));
-        setSaving(savingdata[0].Saving.Saving);
-      })
-      .catch((Error) => console.log(Error.message));
-  };
+  const saving = useContext(SavingDataContext);
+  console.log(JSON.stringify(saving.saving));
   const Investdata = {
     labels: [
       "Jan",
@@ -49,7 +32,7 @@ function Statistics() {
     datasets: [
       {
         label: "Savings",
-        data: saving,
+        data: saving.saving,
         fill: true,
         backgroundColor: "#4D264C",
         borderColor: "#C02C6E",
